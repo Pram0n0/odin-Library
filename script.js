@@ -83,8 +83,8 @@ document.addEventListener('DOMContentLoaded', function() {
         newBookForm.style.display = "block";
     });
 
-    let addBookBtn = document.querySelector("#add_book_button");
-    addBookBtn.addEventListener("click", function (event) {
+    let newBookForm = document.querySelector("#new_book_form");
+    newBookForm.addEventListener("submit", function (event) {
         event.preventDefault();
         addBookToLibrary();
         
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let pages = document.querySelector("#pages");
     let read = document.querySelector("#read");
 
-    title.addEventListener("input", () => {
+    title.addEventListener("submit", () => {
         if (!title.validity.valueMissing && title.validity.tooShort || title.value.length < 3) {
             title.setCustomValidity("Title too short");
         } else if (!title.validity.valueMissing && title.validity.tooLong || title.value.length > 20) {
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
             title.setCustomValidity("");
         }
     })
-    author.addEventListener("input", () => {
+    author.addEventListener("submit", () => {
         if (!author.validity.valueMissing && author.validity.tooShort || author.value.length < 3) {
             author.setCustomValidity("Author too short");
         } else if (!author.validity.valueMissing && author.validity.tooLong || author.value.length > 20) {
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
             author.setCustomValidity("");
         }
     })
-    pages.addEventListener("input", () => {
+    pages.addEventListener("submit", () => {
         if (!pages.validity.valueMissing && pages.validity.rangeUnderFlow || pages.value < 100) {
             pages.setCustomValidity("Book too short");
         } else if (!title.validity.valueMissing && pages.validity.rangeOverFlow || pages.value > 1000) {
@@ -124,4 +124,5 @@ document.addEventListener('DOMContentLoaded', function() {
             pages.setCustomValidity("");
         }
     })
+    renderBooks();
 });
