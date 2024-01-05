@@ -91,4 +91,37 @@ document.addEventListener('DOMContentLoaded', function() {
         let newBookForm = document.querySelector("#new_book_form");
         newBookForm.style.display = "none";
     });
+
+    let title = document.querySelector("#title");
+    let author = document.querySelector("#author");
+    let pages = document.querySelector("#pages");
+    let read = document.querySelector("#read");
+
+    title.addEventListener("input", () => {
+        if (!title.validity.valueMissing && title.validity.tooShort || title.value.length < 3) {
+            title.setCustomValidity("Title too short");
+        } else if (!title.validity.valueMissing && title.validity.tooLong || title.value.length > 20) {
+            title.setCustomValidity("Title too long!");
+        } else {
+            title.setCustomValidity("");
+        }
+    })
+    author.addEventListener("input", () => {
+        if (!author.validity.valueMissing && author.validity.tooShort || author.value.length < 3) {
+            author.setCustomValidity("Author too short");
+        } else if (!author.validity.valueMissing && author.validity.tooLong || author.value.length > 20) {
+            author.setCustomValidity("Author too long!");
+        } else {
+            author.setCustomValidity("");
+        }
+    })
+    pages.addEventListener("input", () => {
+        if (!pages.validity.valueMissing && pages.validity.rangeUnderFlow || pages.value < 100) {
+            pages.setCustomValidity("Book too short");
+        } else if (!title.validity.valueMissing && pages.validity.rangeOverFlow || pages.value > 1000) {
+            pages.setCustomValidity("Book too long!");
+        } else {
+            pages.setCustomValidity("");
+        }
+    })
 });
